@@ -1,7 +1,4 @@
-import {
-  Grid2,
-  Typography,
-} from "@mui/material";
+import { Grid2, Typography } from "@mui/material";
 
 import { useParams } from "react-router";
 import { useActivities } from "../../../lib/hooks/useActivities";
@@ -11,7 +8,6 @@ import ActivityDetailsChat from "./ActivityDetailsChat";
 import ActivityDetailsSidebar from "./ActivityDetailsSidebar";
 
 export default function ActivityDetailsPage() {
-
   const { id } = useParams();
 
   const { activity, isLoadingActivity } = useActivities(id);
@@ -31,7 +27,7 @@ export default function ActivityDetailsPage() {
         <ActivityDetailsChat />
       </Grid2>
       <Grid2 size={4}>
-        <ActivityDetailsSidebar />
+        <ActivityDetailsSidebar activity={activity} />
       </Grid2>
     </Grid2>
   );
