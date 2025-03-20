@@ -1,12 +1,9 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-
 import { useState } from "react";
 import {
   Avatar,
   Box,
+  Button,
   Divider,
-  Link,
   ListItemIcon,
   ListItemText,
   Menu,
@@ -14,6 +11,7 @@ import {
 } from "@mui/material";
 import { useAccount } from "../../lib/hooks/useAccount";
 import { Add, Logout, Person } from "@mui/icons-material";
+import { Link } from "react-router";
 
 export default function UserMenu() {
   const { currentUser, logoutUser } = useAccount();
@@ -35,7 +33,7 @@ export default function UserMenu() {
         sx={{ fontSize: "1.1rem" }}
       >
         <Box display="flex" alignItems="center" gap={2}>
-          <Avatar />
+          <Avatar src={currentUser?.imageUrl} alt="current user image" />
           {currentUser?.displayName}
         </Box>
       </Button>
@@ -48,11 +46,7 @@ export default function UserMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem
-          component={Link as React.ElementType}
-          to="/createActivity"
-          onClick={handleClose}
-        >
+        <MenuItem component={Link} to="/createActivity" onClick={handleClose}>
           <ListItemIcon>
             <Add />
           </ListItemIcon>
@@ -60,7 +54,7 @@ export default function UserMenu() {
         </MenuItem>
         <MenuItem
           component={Link as React.ElementType}
-          to="/profile"
+          to={`/profiles/${currentUser?.id}`}
           onClick={handleClose}
         >
           <ListItemIcon>
